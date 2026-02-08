@@ -280,15 +280,15 @@ button.secondary {
     <!-- PHOTO COLLAGE -->
     <div class="memory-grid">
   <div class="memory-box" onclick="openMemory('Photo1.jpg','Mandir ke shant palon mein,\nmaine sirf tumhe manga tha.')">
-    🛕 First Prayer
+    ✨ Small Moments
   </div>
 
   <div class="memory-box" onclick="openMemory('Photo2.jpg','Gir ke bhi jo haath na chhode,\nwahi rishta sabse gehra hota hai.')">
-    🤍 First Hold
+   ✨ Small Moments
   </div>
 
   <div class="memory-box" onclick="openMemory('Photo3.jpg','Saste pal bhi mehenga lagte hain,\njab saath tumhara ho.')">
-    🌶️ Pani-Puri Date
+   ✨ Small Moments
   </div>
 
   <div class="memory-box" onclick="openMemory('Photo4.jpg','Kuch yaadein tasveer nahi hoti,\nphir bhi dil mein reh jaati hain.')">
@@ -349,7 +349,7 @@ function goToScene(n){
 let yesScale = 1;
 
 function notAnOption(){
-  yesScale += 0.85; // grows every click
+  yesScale += 1.00; // grows every click
   const yesBtn = document.getElementById("yesBtn");
   yesBtn.style.transform = `scale(${yesScale})`;
   yesBtn.style.transition = "transform 0.25s ease";
@@ -404,6 +404,7 @@ function closeMemory(){
 
 </body>
 </html>
+
 
 
 
