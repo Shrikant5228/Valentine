@@ -167,6 +167,77 @@ button.secondary {
   font-size: 1.4rem;
   color: var(--rose);
 }
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.memory-box {
+  background: rgba(255,255,255,0.7);
+  border-radius: 18px;
+  padding: 28px 20px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.memory-box:hover {
+  transform: translateY(-6px);
+  background: #fff;
+}
+.memory-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 999;
+}
+
+.memory-popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 25px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.popup-card img {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.popup-card p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+
 </style>
 </head>
 
@@ -205,13 +276,24 @@ button.secondary {
     </p>
 
     <!-- PHOTO COLLAGE -->
-    <div class="collage">
-      <img src="Photo1.jpg" alt="Memory 1">
-      <img src="Photo2.jpg" alt="Memory 2">
-      <img src="Photo3.jpg" alt="Memory 3">
-      <img src="Photo4.jpg" alt="Memory 4">
+    <div class="memory-grid">
+  <div class="memory-box" onclick="openMemory('Photo1.jpg','Mandir ke shant palon mein,\nmaine sirf tumhe manga tha.')">
+    🛕 First Prayer
+  </div>
 
-    </div>
+  <div class="memory-box" onclick="openMemory('Photo2.jpg','Gir ke bhi jo haath na chhode,\nwahi rishta sabse gehra hota hai.')">
+    🤍 First Hold
+  </div>
+
+  <div class="memory-box" onclick="openMemory('Photo3.jpg','Saste pal bhi mehenga lagte hain,\njab saath tumhara ho.')">
+    🌶️ Pani-Puri Date
+  </div>
+
+  <div class="memory-box" onclick="openMemory('Photo4.jpg','Kuch yaadein tasveer nahi hoti,\nphir bhi dil mein reh jaati hain.')">
+    ✨ Small Moments
+  </div>
+</div>
+
 
     <div class="buttons">
       <button onclick="goToScene(3)">Continue</button>
@@ -289,9 +371,29 @@ function acceptLove(){
   },5500);
 }
 </script>
+<script>
+function openMemory(img, text){
+  document.getElementById("popupImage").src = img;
+  document.getElementById("popupText").innerText = text;
+  document.getElementById("memoryPopup").classList.add("show");
+}
+
+function closeMemory(){
+  document.getElementById("memoryPopup").classList.remove("show");
+}
+</script>
+
+<div class="memory-popup" id="memoryPopup">
+  <div class="popup-card">
+    <span class="close" onclick="closeMemory()">×</span>
+    <img id="popupImage" src="" alt="Memory Image">
+    <p id="popupText"></p>
+  </div>
+</div>
 
 </body>
 </html>
+
 
 
 
