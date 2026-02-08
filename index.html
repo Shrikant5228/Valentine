@@ -216,12 +216,14 @@ button.secondary {
   text-align: center;
   position: relative;
 }
-
 .popup-card img {
   width: 100%;
+  height: 260px;          /* FIXED HEIGHT */
+  object-fit: cover;     /* CROPS nicely, no distortion */
   border-radius: 16px;
   margin-bottom: 16px;
 }
+
 
 .popup-card p {
   font-family: 'Playfair Display', serif;
@@ -310,8 +312,9 @@ button.secondary {
       there’s only one answer that makes sense.
     </p>
     <div class="buttons">
-      <button onclick="acceptLove()">Yes ❤️</button>
-      <button class="secondary" onclick="notAnOption()">No</button>
+  <button id="yesBtn" onclick="acceptLove()">Yes ❤️</button>
+<button class="secondary" onclick="notAnOption()">No</button>
+
     </div>
   </div>
 </section>
@@ -343,9 +346,17 @@ function goToScene(n){
   document.getElementById('scene'+n).classList.add('active');
 }
 
+let yesScale = 1;
+
 function notAnOption(){
-  alert("No is not an option 🙂\nPlease select Yes ❤️");
+  yesScale += 0.15; // grows every click
+  const yesBtn = document.getElementById("yesBtn");
+  yesBtn.style.transform = `scale(${yesScale})`;
+  yesBtn.style.transition = "transform 0.25s ease";
+
+  alert("😌 Hmm… try again.");
 }
+
 
 function acceptLove(){
   document.querySelectorAll('.scene').forEach(s=>s.style.display="none");
@@ -393,6 +404,7 @@ function closeMemory(){
 
 </body>
 </html>
+
 
 
 
